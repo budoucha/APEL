@@ -1,0 +1,29 @@
+html,
+body {
+  background-color: #efc;
+}
+
+section#main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: start;
+  justify-items: center;
+  align-content: start;
+  align-items: center;
+  gap: 0.25em;
+  margin: 0.5em;
+  padding: 5px;
+  background-color: #fce;
+}
+
+div.cell {
+  height: 18ch;
+  width: 8em;
+  background-color: #eef;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.5em;
+  border-bottom: 3px solid #cbc;
+}
