@@ -27,3 +27,15 @@ div.cell {
   padding: 0.5em;
   border-bottom: 3px solid #cbc;
 }
+
+.cell.button-container {
+  opacity: 0.6;
+  place-content: center;
+}
+
+.cell button.add {
+  height: 6em;
+  width: 6em;
+  border-radius: 25%;
+  border-color: #ccc;
+}
