@@ -22,10 +22,25 @@ div.cell {
   width: 8em;
   background-color: #eef;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: start;
   align-items: center;
-  padding: 0.5em;
+  padding: 0.25em;
+  gap: 0.25ch;
   border-bottom: 3px solid #cbc;
+}
+
+div.cell .header {
+  width: 100%;
+  text-align: center;
+  background-color: #bbb;
+}
+
+div.cell .content {
+  flex-grow: 1;
+  width: 100%;
+  background-color: #ccc;
+  text-align: center;
 }
 
 .cell.button-container {
