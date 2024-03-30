@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('add');
     const templateContent = document.querySelector('template#cell-template').content;
     const clone = document.importNode(templateContent, true);
-    const btnContainer = document.querySelector('div');
+    const btnContainer = document.querySelector('div.button-container');
     document.querySelector('section#main').insertBefore(clone, btnContainer);
   });
 });
