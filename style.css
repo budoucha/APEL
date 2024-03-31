@@ -18,7 +18,7 @@ section#main {
 }
 
 div.cell {
-  height: 18ch;
+  height: 8lh;
   width: 8em;
   background-color: #eef;
   display: flex;
@@ -26,7 +26,7 @@ div.cell {
   justify-content: start;
   align-items: center;
   padding: 0.25em;
-  gap: 0.25ch;
+  gap: 0.1lh;
   border-bottom: 3px solid #cbc;
 }
 
@@ -34,6 +34,8 @@ div.cell .header {
   width: 100%;
   text-align: center;
   background-color: #bbb;
+  padding: 0.1em;
+  min-height: 1lh;
 }
 
 div.cell .content {
@@ -50,7 +52,7 @@ div.cell .content {
 }
 
 .cell button.add {
-  height: 6em;
+  height: 6lh;
   width: 6em;
   border-radius: 25%;
   border-color: #ccc;
