@@ -7,4 +7,5 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnContainer = document.querySelector('div.button-container');
     document.querySelector('section#main').insertBefore(clone, btnContainer);
   });
+  addBtnEl.click();
 });
