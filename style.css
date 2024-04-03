@@ -57,3 +57,9 @@ div.cell .content {
   border-radius: 25%;
   border-color: #ccc;
 }
+
+div.cell input {
+  width: 100%;
+  height: llh;
+  padding: 0.25em;
+}
