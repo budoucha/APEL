@@ -1,7 +1,8 @@
 
 document.addEventListener('DOMContentLoaded', () => {
-  let buttonNum = 0;
-  const addBtnEl = document.querySelector('button');
+  
+  // add-cell button
+  const addBtnEl = document.querySelector('button.add-cell');
   addBtnEl.addEventListener('click', () => {
     const templateContent = document.querySelector('template#cell-template').content;
     const clone = document.importNode(templateContent, true);
