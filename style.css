@@ -32,10 +32,28 @@ div.cell {
 
 div.cell .header {
   width: 100%;
-  text-align: center;
-  background-color: #bbb;
+  display: grid;
+  grid-template-columns: 1fr min-content;
+  place-items: center;
+  background-color: #ccc;
   padding: 0.1em;
+  padding-left: 0.4em;
   min-height: 1lh;
+  box-sizing: border-box;
+}
+
+div.cell .header p {
+  justify-self: start;
+  margin: 0;
+}
+
+div.cell .header button.delete-cell {
+  width: 1.5em;
+  height: 1.5em;
+  line-height: 100%;
+  padding: 0;
+  background-color: #fcc;
+  border-radius: 20%;
 }
 
 div.cell .content {
