@@ -51,7 +51,7 @@ div.cell .content {
   place-content: center;
 }
 
-.cell button.add {
+.cell button.add-cell {
   height: 5lh;
   width: 6em;
   border-radius: 25%;
