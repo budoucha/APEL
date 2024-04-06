@@ -59,8 +59,9 @@ div.cell .header button.delete-cell {
 div.cell .content {
   flex-grow: 1;
   width: 100%;
-  background-color: #ccc;
-  text-align: center;
+  background-color: #ddd;
+  display: grid;
+  place-items: center;
   padding: 0.1em;
 }
 
