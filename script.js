@@ -20,6 +20,17 @@ document.addEventListener('DOMContentLoaded', () => {
       const cellEl = document.querySelector(cellId);
       cellEl.remove();
     });
+
+    //update-button
+    const updateBtnEl = clone.querySelector('button.update-cell');
+    updateBtnEl.addEventListener('click', () => {
+      const cellId = `div#cell-${currentCell}`;
+      const cellEl = document.querySelector(cellId);
+      const inputEl = cellEl.querySelector('input');
+      const contentEl = cellEl.querySelector('div.content');
+      contentEl.textContent = inputEl.value;
+    });
+
     // add cell
     const btnContainer = document.querySelector('div.button-container');
     document.querySelector('section#main').insertBefore(clone, btnContainer);
