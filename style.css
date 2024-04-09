@@ -62,7 +62,12 @@ div.cell .content {
   background-color: #ddd;
   display: grid;
   place-items: center;
+  font-size: small;
   padding: 0.1em;
+  text-align: center;
+  text-wrap: balance;
+  overflow-y: auto;
+  scrollbar-width: thin;
 }
 
 .cell.button-container {
