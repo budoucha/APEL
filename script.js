@@ -37,4 +37,11 @@ document.addEventListener('DOMContentLoaded', () => {
     g.cellNum++;
   });
   addBtnEl.click();
+
+  // hover-to-show mode
+  const hideModeEl = document.querySelector('#hover-to-show-mode input');
+  hideModeEl.addEventListener('change', () => {
+    const mainSection = document.querySelector('section#main');
+    mainSection.classList.toggle('hover-to-show');
+  });
 });

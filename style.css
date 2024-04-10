@@ -87,3 +87,13 @@ div.cell input {
   height: llh;
   padding: 0.25em;
 }
+
+/* hover-to-show mode */
+div.cell:hover {
+  opacity: 1;
+}
+
+section#main.hover-to-show div.cell:not(:hover) .content {
+  opacity: 0;
+}
+
