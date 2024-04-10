@@ -3,6 +3,14 @@ body {
   background-color: #efc;
 }
 
+/* upper menu */
+section#menu {
+  position: absolute;
+  right: 1.5em;
+  top: 1lh;
+}
+
+
 section#main {
   display: flex;
   flex-direction: row;
