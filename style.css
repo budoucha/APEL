@@ -8,8 +8,26 @@ section#menu {
   position: absolute;
   right: 1.5em;
   top: 1lh;
+  display: flex;
+  gap: 2em;
+  align-items: center;
 }
 
+section#menu .buttons {
+  display: flex;
+  gap: 1em;
+}
+
+section#menu .buttons button {
+  height: 3em;
+  width: 6em;
+  border-radius: 1.5em;
+  border-color: #ccc;
+}
+
+section#menu .buttons button.clear {
+  background-color: #fed;
+}
 
 section#main {
   display: flex;

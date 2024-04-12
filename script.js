@@ -38,6 +38,15 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   addBtnEl.click();
 
+  // clear button
+  const clearBtnEl = document.querySelector('button.clear');
+  clearBtnEl.addEventListener('click', () => {
+    const cells = document.querySelectorAll('div.cell:not(.dummy-cell)');
+    cells.forEach(cell => {
+      cell.remove();
+    });
+  });
+
   // hover-to-show mode
   const hideModeEl = document.querySelector('#hover-to-show-mode input');
   hideModeEl.addEventListener('change', () => {
