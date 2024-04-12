@@ -45,7 +45,7 @@ section#main {
 
 div.cell {
   height: 8lh;
-  width: 8em;
+  width: 8.4em;
   background-color: #eef;
   display: flex;
   flex-direction: column;
