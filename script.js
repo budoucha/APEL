@@ -1,3 +1,4 @@
+import showConfirm from './showConfirm/showConfirm.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const g = {
@@ -42,9 +43,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const clearBtnEl = document.querySelector('button.clear');
   clearBtnEl.addEventListener('click', () => {
     const cells = document.querySelectorAll('div.cell:not(.dummy-cell)');
-    cells.forEach(cell => {
-      cell.remove();
-    });
+    const callbacks = [
+      {
+        name: "ok", function: () => {
+          cells.forEach(cell => {
+            cell.remove();
+          });
+        }
+      },
+      { name: "cancel", function: null },
+    ];
+    showConfirm('clear all cells?', callbacks);
   });
 
   // hover-to-show mode
