@@ -3,30 +3,33 @@ import showConfirm from './showConfirm/showConfirm.js';
 document.addEventListener('DOMContentLoaded', () => {
   const g = {
     // global variables
-    cellNum: 0,
   };
 
   // add-cell button
   const addBtnEl = document.querySelector('button.add-cell');
   addBtnEl.addEventListener('click', () => {
-    const currentCell = g.cellNum;
     const templateContent = document.querySelector('template#cell-template').content;
     const clone = document.importNode(templateContent, true);
-    clone.querySelector("div.cell").id = `cell-${currentCell}`;
+    const cellIndex = document.querySelectorAll('div.cell.card-cell').length + 1;
+    clone.querySelector("div.cell").id = `cell-${cellIndex}`;
 
     //delete-cell-button
     const deleteBtnEl = clone.querySelector('button.delete-cell');
     deleteBtnEl.addEventListener('click', () => {
-      const cellId = `div#cell-${currentCell}`;
-      const cellEl = document.querySelector(cellId);
+      const cellEl = deleteBtnEl.closest('div.cell');
       cellEl.remove();
+      // reindex
+      const cells = document.querySelectorAll('div.cell.card-cell');
+      cells.forEach((cell, index) => {
+        cell.id = `cell-${index + 1}`;
+        const headerEl = cell.querySelector('input.header p');
+      });
     });
 
     //update-button
     const updateBtnEl = clone.querySelector('button.update-cell');
     updateBtnEl.addEventListener('click', () => {
-      const cellId = `div#cell-${currentCell}`;
-      const cellEl = document.querySelector(cellId);
+      const cellEl = updateBtnEl.closest('div.cell');
       const inputEl = cellEl.querySelector('input');
       const contentEl = cellEl.querySelector('div.content');
       contentEl.textContent = inputEl.value;
@@ -35,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // add cell
     const btnContainer = document.querySelector('div.button-container');
     document.querySelector('section#main').insertBefore(clone, btnContainer);
-    g.cellNum++;
   });
   addBtnEl.click();
 
