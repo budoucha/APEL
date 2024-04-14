@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // clear button
   const clearBtnEl = document.querySelector('button.clear');
   clearBtnEl.addEventListener('click', () => {
-    const cells = document.querySelectorAll('div.cell:not(.dummy-cell)');
+    const cells = document.querySelectorAll('div.cell:not(.meta-cell)');
     const callbacks = [
       {
         name: "ok", function: () => {
