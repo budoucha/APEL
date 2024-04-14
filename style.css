@@ -92,6 +92,8 @@ div.cell .content {
   display: grid;
   place-items: center;
   font-size: small;
+  white-space: pre-wrap;
+  margin: 0;
   padding: 0.1em;
   text-align: center;
   text-wrap: balance;

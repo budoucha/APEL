@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateBtnEl.addEventListener('click', () => {
       const cellEl = updateBtnEl.closest('div.cell');
       const inputEl = cellEl.querySelector('input');
-      const contentEl = cellEl.querySelector('div.content');
+      const contentEl = cellEl.querySelector('.content');
       contentEl.textContent = inputEl.value;
     });
 
