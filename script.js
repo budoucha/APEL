@@ -13,6 +13,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const cellIndex = document.querySelectorAll('div.cell.card-cell').length + 1;
     clone.querySelector("div.cell").id = `cell-${cellIndex}`;
 
+    // header click-to-edit
+    const headerEl = clone.querySelector('.cell .header p');
+    headerEl.addEventListener('click', () => {
+      const inputEl = document.createElement('input');
+      inputEl.value = headerEl.textContent;
+      headerEl.replaceWith(inputEl);
+      inputEl.focus();
+      inputEl.select();
+      inputEl.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          headerEl.innerText = inputEl.value;
+          inputEl.replaceWith(headerEl);
+        }
+      });
+      inputEl.addEventListener('blur', (e) => {
+        headerEl.innerText = inputEl.value;
+        inputEl.replaceWith(headerEl);
+      });
+    });
+    headerEl.textContent = `${cellIndex}`;
+
     //delete-cell-button
     const deleteBtnEl = clone.querySelector('button.delete-cell');
     deleteBtnEl.addEventListener('click', () => {

@@ -75,6 +75,13 @@ div.cell .header p {
   background-color: #ccc;
 }
 
+div.cell .header input {
+  justify-self: start;
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 div.cell .header button.delete-cell {
   width: 1.6em;
   height: 1.6em;
