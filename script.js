@@ -50,15 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
       remapCellElIndex();
     });
 
-    //update-button
-    const updateBtnEl = clone.querySelector('button.update-cell');
-    updateBtnEl.addEventListener('click', () => {
-      const cellEl = updateBtnEl.closest('div.cell');
-      const inputEl = cellEl.querySelector('input');
-      const contentEl = cellEl.querySelector('.content');
-      contentEl.textContent = inputEl.value;
-    });
-
     // move cell before button
     const moveBeforeBtnEl = clone.querySelector('button.move-cell.before');
     moveBeforeBtnEl.addEventListener('click', () => {
