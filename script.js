@@ -5,6 +5,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // global variables
   };
 
+  const remapCellElIndex = () => {
+    const cells = document.querySelectorAll('div.cell.card-cell');
+    cells.forEach((cell, index) => {
+      cell.id = `cell-${index + 1}`;
+      const headerEl = cell.querySelector('input.header p');
+    });
+  }
+
   // add-cell button
   const addBtnEl = document.querySelector('button.add-cell');
   addBtnEl.addEventListener('click', () => {
@@ -39,12 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     deleteBtnEl.addEventListener('click', () => {
       const cellEl = deleteBtnEl.closest('div.cell');
       cellEl.remove();
-      // reindex
-      const cells = document.querySelectorAll('div.cell.card-cell');
-      cells.forEach((cell, index) => {
-        cell.id = `cell-${index + 1}`;
-        const headerEl = cell.querySelector('input.header p');
-      });
+      remapCellElIndex();
     });
 
     //update-button
@@ -54,11 +57,32 @@ document.addEventListener('DOMContentLoaded', () => {
       const inputEl = cellEl.querySelector('input');
       const contentEl = cellEl.querySelector('.content');
       contentEl.textContent = inputEl.value;
+
+    // move cell before button
+    const moveBeforeBtnEl = clone.querySelector('button.move-cell.before');
+    moveBeforeBtnEl.addEventListener('click', () => {
+      const cellEl = moveBeforeBtnEl.closest('div.cell');
+      const previousCellEl = cellEl.previousElementSibling;
+      if (previousCellEl) {
+        cellEl.parentNode.insertBefore(cellEl, previousCellEl);
+        remapCellElIndex();
+      }
+    });
+    // move cell after button
+    const moveAfterBtnEl = clone.querySelector('button.move-cell.after');
+    moveAfterBtnEl.addEventListener('click', () => {
+      const cellEl = moveAfterBtnEl.closest('div.cell');
+      const nextCellEl = cellEl.nextElementSibling;
+      if (nextCellEl) {
+        cellEl.parentNode.insertBefore(cellEl, nextCellEl.nextElementSibling);
+        remapCellElIndex();
+      }
     });
 
     // add cell
     const btnContainer = document.querySelector('div.button-container');
     document.querySelector('section#main').insertBefore(clone, btnContainer);
+    remapCellElIndex();
   });
   addBtnEl.click();
 
