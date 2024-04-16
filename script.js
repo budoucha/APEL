@@ -42,6 +42,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     headerEl.textContent = `${cellIndex}`;
 
+    // content click-to-edit
+    const contentEl = clone.querySelector('.content');
+    contentEl.addEventListener('click', () => {
+      const inputEl = document.createElement('textarea');
+      inputEl.value = contentEl.textContent;
+      contentEl.replaceWith(inputEl);
+      inputEl.focus();
+      inputEl.select();
+      inputEl.addEventListener('blur', (e) => {
+        contentEl.innerText = inputEl.value;
+        inputEl.replaceWith(contentEl);
+      });
+    });
+
     //delete-cell-button
     const deleteBtnEl = clone.querySelector('button.delete-cell');
     deleteBtnEl.addEventListener('click', () => {
