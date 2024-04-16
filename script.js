@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const inputEl = cellEl.querySelector('input');
       const contentEl = cellEl.querySelector('.content');
       contentEl.textContent = inputEl.value;
+    });
 
     // move cell before button
     const moveBeforeBtnEl = clone.querySelector('button.move-cell.before');
