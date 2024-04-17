@@ -11,18 +11,28 @@ document.addEventListener('DOMContentLoaded', () => {
       const elType = options?.textArea ? 'textarea' : 'input';
       const inputEl = document.createElement(elType);
       el.classList.forEach(className => inputEl.classList.add(className));
-      inputEl.value = el.textContent;
+      inputEl.value = el.innerHTML.replace(/<br\s*\/?>/gi, '\n');;
       el.replaceWith(inputEl);
       inputEl.focus();
       inputEl.select();
+      const handleKey = (e) => {
+        if (e.key === 'Enter' && e.shiftKey) {
+          const start = inputEl.selectionStart;
+          const end = inputEl.selectionEnd;
+          let value = inputEl.value.substring(0, start);
+          value += '\n' + inputEl.value.substring(end);
+        }
+        else if (e.key === 'Enter') {
+          completeEdit(e);
+        }
+      }
       const completeEdit = (e) => {
-        if (e.type === 'keypress' && e.key !== 'Enter') return;
         el.innerText = inputEl.value;
         setTimeout(() => {
           inputEl.replaceWith(el);
         }, 0);
       }
-      inputEl.addEventListener('keypress', completeEdit);
+      inputEl.addEventListener('keypress', handleKey);
       inputEl.addEventListener('blur', completeEdit);
     });
   };
