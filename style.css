@@ -25,6 +25,7 @@ section#menu {
   padding: 0.4lh 1em;
   right: 1.5em;
   top: 0.5lh;
+  z-index: 1000;
   display: flex;
   gap: 2em;
   align-items: center;
