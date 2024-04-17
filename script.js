@@ -14,16 +14,15 @@ document.addEventListener('DOMContentLoaded', () => {
       el.replaceWith(inputEl);
       inputEl.focus();
       inputEl.select();
-      inputEl.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-          el.innerText = inputEl.value;
-          inputEl.replaceWith(el);
-        }
-      });
-      inputEl.addEventListener('blur', (e) => {
+      const completeEdit = (e) => {
+        if (e.type === 'keypress' && e.key !== 'Enter') return;
         el.innerText = inputEl.value;
-        inputEl.replaceWith(el);
-      });
+        setTimeout(() => {
+          inputEl.replaceWith(el);
+        }, 0);
+      }
+      inputEl.addEventListener('keypress', completeEdit);
+      inputEl.addEventListener('blur', completeEdit);
     });
   };
 
