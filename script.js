@@ -52,17 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // content click-to-edit
     const contentEl = clone.querySelector('.content');
-    contentEl.addEventListener('click', () => {
-      const inputEl = document.createElement('textarea');
-      inputEl.value = contentEl.textContent;
-      contentEl.replaceWith(inputEl);
-      inputEl.focus();
-      inputEl.select();
-      inputEl.addEventListener('blur', (e) => {
-        contentEl.innerText = inputEl.value;
-        inputEl.replaceWith(contentEl);
-      });
-    });
+    clickToEdit(contentEl, {textArea: true});
 
     //delete-cell-button
     const deleteBtnEl = clone.querySelector('button.delete-cell');
