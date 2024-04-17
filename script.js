@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const clickToEdit = (el, options = {}) => {
     if (!(el instanceof HTMLElement)) return;
     el.addEventListener('click', () => {
-      const inputEl = document.createElement('input');
+      const elType = options?.textArea ? 'textarea' : 'input';
+      const inputEl = document.createElement(elType);
       el.classList.forEach(className => inputEl.classList.add(className));
       inputEl.value = el.textContent;
       el.replaceWith(inputEl);
