@@ -5,6 +5,30 @@ document.addEventListener('DOMContentLoaded', () => {
     // global variables
   };
 
+  const clickToEdit = (el, options = {}) => {
+    if (!(el instanceof HTMLElement)) return;
+    el.addEventListener('click', () => {
+      const inputEl = document.createElement('input');
+      el.classList.forEach(className => inputEl.classList.add(className));
+      inputEl.value = el.textContent;
+      el.replaceWith(inputEl);
+      inputEl.focus();
+      inputEl.select();
+      inputEl.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          el.innerText = inputEl.value;
+          inputEl.replaceWith(el);
+        }
+      });
+      inputEl.addEventListener('blur', (e) => {
+        el.innerText = inputEl.value;
+        inputEl.replaceWith(el);
+      });
+    });
+  };
+
+  clickToEdit(document.querySelector('h1.page-title'));
+
   const remapCellElIndex = () => {
     const cells = document.querySelectorAll('div.cell.card-cell');
     cells.forEach((cell, index) => {

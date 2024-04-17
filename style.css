@@ -1,6 +1,21 @@
 html,
 body {
   background-color: #efc;
+  display: grid;
+  grid-template-rows: 3lh 1fr;
+}
+
+body h1.page-title {
+  width: 40vw;
+  color: #555;
+  cursor: pointer;
+}
+
+body input.page-title {
+  width: 16em;
+  height: 1.2lh;
+  font-size: 2em;
+  align-self: center;
 }
 
 /* upper menu */
