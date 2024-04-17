@@ -20,12 +20,15 @@ body input.page-title {
 
 /* upper menu */
 section#menu {
-  position: absolute;
+  position: fixed;
+  background-color: #8884;
+  padding: 0.4lh 1em;
   right: 1.5em;
-  top: 1lh;
+  top: 0.5lh;
   display: flex;
   gap: 2em;
   align-items: center;
+  border-radius: 0.4em;
 }
 
 section#menu .buttons {
