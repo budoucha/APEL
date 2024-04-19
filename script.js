@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // content click-to-edit
     const contentEl = clone.querySelector('.content');
-    clickToEdit(contentEl, {textArea: true});
+    clickToEdit(contentEl, { textArea: true });
 
     //delete-cell-button
     const deleteBtnEl = clone.querySelector('button.delete-cell');
