@@ -1,8 +1,9 @@
-html,
 body {
   background-color: #efc;
   display: grid;
   grid-template-rows: 3lh 1fr;
+  margin: 4px;  
+}
 }
 
 body h1.page-title {
