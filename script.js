@@ -47,9 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // add-cell button
-  const addBtnEl = document.querySelector('button.add-cell');
-  addBtnEl.addEventListener('click', () => {
+  const createCell = () => {
     const templateContent = document.querySelector('template#cell-template').content;
     const clone = document.importNode(templateContent, true);
     const cellIndex = document.querySelectorAll('div.cell.card-cell').length + 1;
@@ -94,9 +92,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // add cell
-    const btnContainer = document.querySelector('div.button-container');
+    const btnContainer = document.querySelector('#add-cell-button');
     document.querySelector('section#main').insertBefore(clone, btnContainer);
     remapCellElIndex();
+  }
+
+  // add-cell button
+  const addBtnEl = document.querySelector('#add-cell-button button.add-cell');
+  addBtnEl.addEventListener('click', () => {
+    createCell();
   });
   addBtnEl.click();
 
