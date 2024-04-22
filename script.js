@@ -102,6 +102,13 @@ document.addEventListener('DOMContentLoaded', () => {
   addBtnEl.addEventListener('click', () => {
     createCell();
   });
+  // add-cell shortcut
+  document.addEventListener('keydown', (e) => {
+    // Ctrl + M
+    if (e.ctrlKey && e.key === 'm') {
+      createCell();
+    }
+  });
   addBtnEl.click();
 
   // clear button

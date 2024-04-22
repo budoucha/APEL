@@ -140,9 +140,11 @@ div.cell textarea {
   justify-content: space-around;
 }
 
-.cell.button-container {
+.meta-cell.button-container {
   opacity: 0.6;
   place-content: center;
+  border-radius: 1em;
+  scale: 0.88;
 }
 
 .cell button.add-cell {
