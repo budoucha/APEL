@@ -89,6 +89,7 @@ div.cell .header {
 div.cell .header p {
   justify-self: start;
   width: 100%;
+  height: 100%;
   padding: 0 0.2em;
   margin: 0;
   box-sizing: border-box;
