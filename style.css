@@ -151,16 +151,23 @@ div.cell textarea {
 
 .meta-cell.button-container {
   opacity: 0.6;
+  display: grid;
   place-content: center;
   border-radius: 1em;
   scale: 0.88;
 }
 
-.cell button.add-cell {
+.button-container button.add-cell {
   height: 5lh;
   width: 6em;
   border-radius: 25%;
   border-color: #ccc;
+}
+
+.meta-cell.button-container button p {
+  margin: 0.1lh;
+  font-size: 0.8em;
+  opacity: 0.6;
 }
 
 div.cell input {
