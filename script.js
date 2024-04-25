@@ -125,20 +125,17 @@ document.addEventListener('DOMContentLoaded', () => {
   // save cells to local storage
   saveBtnEl.addEventListener('click', () => {
     g.dataSlot.pageTitle = document.querySelector('h1.page-title').textContent;
-    console.log(g.dataSlot.pageTitle);
     g.dataSlot.cells = [];
     const cells = document.querySelectorAll('section#main div.cell.card-cell:not(.meta-cell)');
     cells.forEach(cell => {
       const cellInfo = {};
       const headerEl = cell.querySelector('.header p');
-      console.log(headerEl);
       cellInfo.header = headerEl?.textContent;
       const contentEl = cell.querySelector('.content');
       cellInfo.content = contentEl?.innerHTML.replace(/<br\s*\/?>/gi, '\n');
       cellInfo.color = contentEl?.style.backgroundColor;
       g.dataSlot.cells.push(cellInfo);
     });
-    console.log(g.dataSlot.cells[0]);
     localStorage.setItem('dataSlot', JSON.stringify(g.dataSlot));
   });
 
