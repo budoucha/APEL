@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const elType = options?.textArea ? 'textarea' : 'input';
       const inputEl = document.createElement(elType);
       el.classList.forEach(className => inputEl.classList.add(className));
-      inputEl.value = el.innerHTML.replace(/<br\s*\/?>/gi, '\n');;
+      inputEl.value = el.innerHTML.replace(/<br\s*\/?>/gi, '\n');
       el.replaceWith(inputEl);
       inputEl.focus();
       inputEl.select();
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log(headerEl);
       cellInfo.header = headerEl?.textContent;
       const contentEl = cell.querySelector('.content');
-      cellInfo.content = contentEl?.textContent;
+      cellInfo.content = contentEl?.innerHTML.replace(/<br\s*\/?>/gi, '\n');
       cellInfo.color = contentEl?.style.backgroundColor;
       g.dataSlot.cells.push(cellInfo);
     });
