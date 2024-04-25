@@ -2,9 +2,9 @@ body {
   background-color: #efc;
   display: grid;
   grid-template-rows: 3lh 1fr;
-  margin: 4px;  
+  margin: 4px;
 }
-}
+
 
 body h1.page-title {
   width: 40vw;
@@ -47,6 +47,14 @@ section#menu .buttons button {
 
 section#menu .buttons button.clear {
   background-color: #fed;
+}
+
+section#menu .buttons button.load {
+  background-color: #dfe;
+}
+
+section#menu .buttons button.save {
+  background-color: #def;
 }
 
 section#main {

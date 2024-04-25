@@ -3,6 +3,10 @@ import showConfirm from './showConfirm/showConfirm.js';
 document.addEventListener('DOMContentLoaded', () => {
   const g = {
     // global variables
+    dataSlot: {
+      pageTitle: "",
+      cells: [],
+    }
   };
 
   const clickToEdit = (el, options = {}) => {
@@ -47,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const createCell = () => {
+  const createCell = (cellInfo = {}) => {
     const templateContent = document.querySelector('template#cell-template').content;
     const clone = document.importNode(templateContent, true);
     const cellIndex = document.querySelectorAll('div.cell.card-cell').length + 1;
@@ -91,6 +95,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+    // apply cellInfo
+    headerEl.textContent = cellInfo.header || headerEl.textContent;
+    contentEl.textContent = cellInfo.content || contentEl.textContent;
+    contentEl.style.backgroundColor = cellInfo.color || contentEl.style.backgroundColor;
+
     // add cell
     const btnContainer = document.querySelector('#add-cell-button');
     document.querySelector('section#main').insertBefore(clone, btnContainer);
@@ -110,6 +119,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   addBtnEl.click();
+
+  // save button
+  const saveBtnEl = document.querySelector('button.save');
+  // save cells to local storage
+  saveBtnEl.addEventListener('click', () => {
+    g.dataSlot.pageTitle = document.querySelector('h1.page-title').textContent;
+    console.log(g.dataSlot.pageTitle);
+    g.dataSlot.cells = [];
+    const cells = document.querySelectorAll('section#main div.cell.card-cell:not(.meta-cell)');
+    cells.forEach(cell => {
+      const cellInfo = {};
+      const headerEl = cell.querySelector('.header p');
+      console.log(headerEl);
+      cellInfo.header = headerEl?.textContent;
+      const contentEl = cell.querySelector('.content');
+      cellInfo.content = contentEl?.textContent;
+      cellInfo.color = contentEl?.style.backgroundColor;
+      g.dataSlot.cells.push(cellInfo);
+    });
+    console.log(g.dataSlot.cells[0]);
+    localStorage.setItem('dataSlot', JSON.stringify(g.dataSlot));
+  });
+
+  // load button
+  const loadBtnEl = document.querySelector('button.load');
+  // load cells from local storage
+  loadBtnEl.addEventListener('click', () => {
+    // remove all card-cells
+    const cells = document.querySelectorAll('section#main div.cell.card-cell');
+    cells.forEach(cell => {
+      cell.remove();
+    });
+    const loadedSlot = JSON.parse(localStorage.getItem('dataSlot'));
+    document.querySelector('h1.page-title').textContent = loadedSlot.pageTitle;
+    loadedSlot.cells.forEach(cellInfo => {
+      createCell(cellInfo);
+    });
+  });
 
   // clear button
   const clearBtnEl = document.querySelector('button.clear');
