@@ -143,16 +143,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const loadBtnEl = document.querySelector('button.load');
   // load cells from local storage
   loadBtnEl.addEventListener('click', () => {
-    // remove all card-cells
-    const cells = document.querySelectorAll('section#main div.cell.card-cell');
-    cells.forEach(cell => {
-      cell.remove();
-    });
-    const loadedSlot = JSON.parse(localStorage.getItem('dataSlot'));
-    document.querySelector('h1.page-title').textContent = loadedSlot.pageTitle;
-    loadedSlot.cells.forEach(cellInfo => {
-      createCell(cellInfo);
-    });
+    showConfirm('overwrite current cells?', [
+      {
+        name: "ok", function: () => {
+          // remove all card-cells
+          const cells = document.querySelectorAll('section#main div.cell.card-cell');
+          cells.forEach(cell => {
+            cell.remove();
+          });
+          const loadedSlot = JSON.parse(localStorage.getItem('dataSlot'));
+          document.querySelector('h1.page-title').textContent = loadedSlot.pageTitle;
+          loadedSlot.cells.forEach(cellInfo => {
+            createCell(cellInfo);
+          });
+        }
+      },
+      { name: "cancel", function: null },
+    ]);
   });
 
   // clear button
