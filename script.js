@@ -124,19 +124,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const saveBtnEl = document.querySelector('button.save');
   // save cells to local storage
   saveBtnEl.addEventListener('click', () => {
-    g.dataSlot.pageTitle = document.querySelector('h1.page-title').textContent;
-    g.dataSlot.cells = [];
-    const cells = document.querySelectorAll('section#main div.cell.card-cell:not(.meta-cell)');
-    cells.forEach(cell => {
-      const cellInfo = {};
-      const headerEl = cell.querySelector('.header p');
-      cellInfo.header = headerEl?.textContent;
-      const contentEl = cell.querySelector('.content');
-      cellInfo.content = contentEl?.innerHTML.replace(/<br\s*\/?>/gi, '\n');
-      cellInfo.color = contentEl?.style.backgroundColor;
-      g.dataSlot.cells.push(cellInfo);
-    });
-    localStorage.setItem('dataSlot', JSON.stringify(g.dataSlot));
+    showConfirm('overwrite saved data?', [
+      {
+        name: "ok", function: () => {
+          g.dataSlot.pageTitle = document.querySelector('h1.page-title').textContent;
+          g.dataSlot.cells = [];
+          const cells = document.querySelectorAll('section#main div.cell.card-cell:not(.meta-cell)');
+          cells.forEach(cell => {
+            const cellInfo = {};
+            const headerEl = cell.querySelector('.header p');
+            cellInfo.header = headerEl?.textContent;
+            const contentEl = cell.querySelector('.content');
+            cellInfo.content = contentEl?.innerHTML.replace(/<br\s*\/?>/gi, '\n');
+            cellInfo.color = contentEl?.style.backgroundColor;
+            g.dataSlot.cells.push(cellInfo);
+          });
+          localStorage.setItem('dataSlot', JSON.stringify(g.dataSlot));
+        }
+      },
+      { name: "cancel", function: null },
+    ]);
   });
 
   // load button
