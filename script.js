@@ -142,6 +142,31 @@ document.addEventListener('DOMContentLoaded', () => {
           localStorage.setItem('dataSlot', JSON.stringify(g.dataSlot));
         }
       },
+      {
+        name: "No (only export to file)", function: () => {
+          const cells = document.querySelectorAll('section#main div.cell.card-cell:not(.meta-cell)');
+          const data = {
+            pageTitle: document.querySelector('h1.page-title').textContent,
+            cells: [],
+          };
+          cells.forEach(cell => {
+            const cellInfo = {};
+            const headerEl = cell.querySelector('p.cell-title');
+            cellInfo.header = headerEl?.textContent;
+            const contentEl = cell.querySelector('.content');
+            cellInfo.content = contentEl?.innerHTML.replace(/<br\s*\/?>/gi, '\n');
+            cellInfo.color = contentEl?.style.backgroundColor;
+            data.cells.push(cellInfo);
+          });
+          const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'data.json';
+          a.click();
+          URL.revokeObjectURL(url);
+        }
+      },
       { name: "cancel", function: null },
     ]);
   });
@@ -163,6 +188,28 @@ document.addEventListener('DOMContentLoaded', () => {
           loadedSlot.cells.forEach(cellInfo => {
             createCell(cellInfo);
           });
+        }
+      },
+      {
+        name: "Ok (Import from file)", function: () => {
+          // remove all card-cells
+          const cells = document.querySelectorAll('section#main div.cell.card-cell');
+          cells.forEach(cell => {
+            cell.remove();
+          });
+          const input = document.createElement('input');
+          input.type = 'file';
+          input.accept = 'application/json';
+          input.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            const text = await file.text();
+            const data = JSON.parse(text);
+            document.querySelector('h1.page-title').textContent = data.pageTitle;
+            data.cells.forEach(cellInfo => {
+              createCell(cellInfo);
+            });
+          });
+          input.click();
         }
       },
       { name: "cancel", function: null },
