@@ -174,29 +174,27 @@ document.addEventListener('DOMContentLoaded', () => {
   // load button
   const loadBtnEl = document.querySelector('button.load');
   // load cells from local storage
+  const loadData = (dataSlot) => {
+    // remove all card-cells
+    const cells = document.querySelectorAll('section#main div.cell.card-cell');
+    cells.forEach(cell => {
+      cell.remove();
+    });
+    document.querySelector('h1.page-title').textContent = dataSlot.pageTitle;
+    dataSlot.cells.forEach(cellInfo => {
+      createCell(cellInfo);
+    });
+  };
   loadBtnEl.addEventListener('click', () => {
     showConfirm('overwrite current cells?', [
       {
         name: "ok", function: () => {
-          // remove all card-cells
-          const cells = document.querySelectorAll('section#main div.cell.card-cell');
-          cells.forEach(cell => {
-            cell.remove();
-          });
           const loadedSlot = JSON.parse(localStorage.getItem('dataSlot'));
-          document.querySelector('h1.page-title').textContent = loadedSlot.pageTitle;
-          loadedSlot.cells.forEach(cellInfo => {
-            createCell(cellInfo);
-          });
+          loadData(loadedSlot);
         }
       },
       {
         name: "Ok (Import from file)", function: () => {
-          // remove all card-cells
-          const cells = document.querySelectorAll('section#main div.cell.card-cell');
-          cells.forEach(cell => {
-            cell.remove();
-          });
           const input = document.createElement('input');
           input.type = 'file';
           input.accept = 'application/json';
@@ -204,10 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const file = e.target.files[0];
             const text = await file.text();
             const data = JSON.parse(text);
-            document.querySelector('h1.page-title').textContent = data.pageTitle;
-            data.cells.forEach(cellInfo => {
-              createCell(cellInfo);
-            });
+            loadData(data);
           });
           input.click();
         }
