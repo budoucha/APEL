@@ -122,43 +122,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // save button
   const saveBtnEl = document.querySelector('button.save');
+  const makeSlot = () => {
+    const cells = document.querySelectorAll('section#main div.cell.card-cell:not(.meta-cell)');
+    const data = {
+      pageTitle: document.querySelector('h1.page-title').textContent,
+      cells: [],
+    };
+    cells.forEach(cell => {
+      const cellInfo = {};
+      const headerEl = cell.querySelector('p.cell-title');
+      cellInfo.header = headerEl?.textContent;
+      const contentEl = cell.querySelector('.content');
+      cellInfo.content = contentEl?.innerHTML.replace(/<br\s*\/?>/gi, '\n');
+      cellInfo.color = contentEl?.style.backgroundColor;
+      data.cells.push(cellInfo);
+    });
+    return data;
+  }
   // save cells to local storage
   saveBtnEl.addEventListener('click', () => {
     showConfirm('overwrite saved data?', [
       {
         name: "ok", function: () => {
-          g.dataSlot.pageTitle = document.querySelector('h1.page-title').textContent;
-          g.dataSlot.cells = [];
-          const cells = document.querySelectorAll('section#main div.cell.card-cell:not(.meta-cell)');
-          cells.forEach(cell => {
-            const cellInfo = {};
-            const headerEl = cell.querySelector('.header p');
-            cellInfo.header = headerEl?.textContent;
-            const contentEl = cell.querySelector('.content');
-            cellInfo.content = contentEl?.innerHTML.replace(/<br\s*\/?>/gi, '\n');
-            cellInfo.color = contentEl?.style.backgroundColor;
-            g.dataSlot.cells.push(cellInfo);
-          });
+          g.dataSlot = makeSlot();
           localStorage.setItem('dataSlot', JSON.stringify(g.dataSlot));
         }
       },
       {
         name: "No (only export to file)", function: () => {
-          const cells = document.querySelectorAll('section#main div.cell.card-cell:not(.meta-cell)');
-          const data = {
-            pageTitle: document.querySelector('h1.page-title').textContent,
-            cells: [],
-          };
-          cells.forEach(cell => {
-            const cellInfo = {};
-            const headerEl = cell.querySelector('p.cell-title');
-            cellInfo.header = headerEl?.textContent;
-            const contentEl = cell.querySelector('.content');
-            cellInfo.content = contentEl?.innerHTML.replace(/<br\s*\/?>/gi, '\n');
-            cellInfo.color = contentEl?.style.backgroundColor;
-            data.cells.push(cellInfo);
-          });
-          const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+          const slotData = makeSlot();
+          const blob = new Blob([JSON.stringify(slotData)], { type: 'application/json' });
           const url = URL.createObjectURL(blob);
           const a = document.createElement('a');
           a.href = url;
