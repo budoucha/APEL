@@ -203,6 +203,9 @@ document.addEventListener('DOMContentLoaded', () => {
       { name: "cancel", function: null },
     ]);
   });
+  // auto load
+  const savedSlot = JSON.parse(localStorage.getItem('dataSlot'));
+  loadData(savedSlot);
 
   // clear button
   const clearBtnEl = document.querySelector('button.clear');
