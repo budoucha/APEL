@@ -34,30 +34,30 @@ section#menu {
   gap: 2em;
   align-items: center;
   border-radius: 0.4em;
-}
 
-section#menu .buttons {
-  display: flex;
-  gap: 1em;
-}
+  .buttons {
+    display: flex;
+    gap: 1em;
 
-section#menu .buttons button {
-  height: 3em;
-  width: 6em;
-  border-radius: 1.5em;
-  border-color: #ccc;
-}
+    button {
+      height: 3em;
+      width: 6em;
+      border-radius: 1.5em;
+      border-color: #ccc;
+    }
 
-section#menu .buttons button.clear {
-  background-color: #fed;
-}
+    button.clear {
+      background-color: #fed;
+    }
 
-section#menu .buttons button.load {
-  background-color: #dfe;
-}
+    button.load {
+      background-color: #dfe;
+    }
 
-section#menu .buttons button.save {
-  background-color: #def;
+    button.save {
+      background-color: #def;
+    }
+  }
 }
 
 section#main {
