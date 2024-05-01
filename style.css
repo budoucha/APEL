@@ -3,20 +3,23 @@ body {
   display: grid;
   grid-template-rows: 3lh 1fr;
   margin: 4px;
+
+  .page-title {
+    margin-left: 0.2em;
+    width: 15em;
+    height: 1.2lh;
+    font-size: 2em;
+    color: #555;
+  }
+
+  h1.page-title {
+    cursor: pointer;
+  }
+
+  input.page-title {
+    align-self: center;
+  }
 }
-
-
-body h1.page-title {
-  width: 40vw;
-  color: #555;
-  cursor: pointer;
-}
-
-body input.page-title {
-  width: 16em;
-  height: 1.2lh;
-  font-size: 2em;
-  align-self: center;
 }
 
 /* upper menu */
