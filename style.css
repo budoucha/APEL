@@ -127,7 +127,6 @@ div.cell .content {
   background-color: #ddd;
   display: grid;
   place-items: center;
-  font-size: small;
   white-space: pre-wrap;
   margin: 0;
   padding: 0.1em;
