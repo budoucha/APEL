@@ -157,25 +157,19 @@ div.cell textarea {
   place-content: center;
   border-radius: 1em;
   scale: 0.88;
-}
 
-.button-container button.add-cell {
-  height: 5lh;
-  width: 6em;
-  border-radius: 25%;
-  border-color: #ccc;
-}
+  button p {
+    margin: 0.1lh;
+    font-size: 0.8em;
+    opacity: 0.6;
+  }
 
-.meta-cell.button-container button p {
-  margin: 0.1lh;
-  font-size: 0.8em;
-  opacity: 0.6;
-}
-
-div.cell input {
-  width: 100%;
-  height: llh;
-  padding: 0.25em;
+  button.add-cell {
+    height: 5lh;
+    width: 6em;
+    border-radius: 25%;
+    border-color: #ccc;
+  }
 }
 
 /* hover-to-show mode */
