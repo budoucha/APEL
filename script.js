@@ -252,11 +252,12 @@ document.addEventListener('DOMContentLoaded', () => {
           cells.forEach(cell => {
             cell.remove();
           });
+          document.querySelector('.page-title h1').textContent = "New Tempelit";
         }
       },
       { name: "cancel", function: null },
     ];
-    showConfirm('clear all cells?', callbacks);
+    showConfirm('clear all cells and title?', callbacks);
   });
 
   // hover-to-show mode
