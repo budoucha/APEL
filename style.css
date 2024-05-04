@@ -64,6 +64,20 @@ section#menu {
     font-size: small;
   }
 
+  .half-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1em;
+
+    button {
+      font-size: 0.72em;
+      padding: 0.2em 0.8em;
+      border-radius: 1.5em;
+      background-color: #fff;
+      border-color: #ccc;
+    }
+  }
+
   .buttons {
     display: flex;
     gap: 1em;

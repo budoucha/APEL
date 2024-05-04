@@ -155,6 +155,27 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   addBtnEl.click();
 
+  /* menu buttons */
+  const colorShuffleBtnEl = document.querySelector('button.color-shuffle');
+  colorShuffleBtnEl.addEventListener('click', () => {
+    const cells = document.querySelectorAll('section#main div.cell.card-cell');
+    cells.forEach(cell => {
+      const contentEl = cell.querySelector('.content');
+      contentEl.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 95%)`;
+    });
+  });
+
+  const cardShuffleBtnEl = document.querySelector('button.card-shuffle');
+  cardShuffleBtnEl.addEventListener('click', () => {
+    const cells = document.querySelectorAll('section#main div.cell.card-cell');
+    const shuffledCells = Array.from(cells).sort(() => Math.random() - 0.5);
+    const btnContainer = document.querySelector('#add-cell-button');
+    shuffledCells.forEach(cell => {
+      document.querySelector('section#main').insertBefore(cell, btnContainer);
+    });
+    remapCellElIndex();
+  });
+
   // save button
   const saveBtnEl = document.querySelector('button.save');
   const makeSlot = () => {
