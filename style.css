@@ -21,6 +21,15 @@ body {
   }
 }
 
+#signature {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 0 1em;
+  font-size: small;
+  color: #8882;
+  pointer-events: none;
+}
 
 /* upper menu */
 section#menu {
