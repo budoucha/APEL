@@ -20,19 +20,19 @@
     </div>
   </section>
   <section id="main">
+    <div id="grab-marker" class="cell meta-cell grab-marker hidden"></div>
     <div id="add-cell-button" class="cell meta-cell button-container">
       <button class="add-cell">+add<p>(Ctrl+M)</p></button>
     </div>
     <template id="cell-template">
       <div class="cell card-cell">
-        <div class="header">
-          <p>header</p>
-          <button class="delete-cell">x</button>
-        </div>
-        <div class="content"></div>
-        <div class="bottom-buttons">
-          <button class="move-cell before">←</button>
-          <button class="move-cell after">→</button>
+        <div class="grab-cell side-bar" draggable="true"></div>
+        <div class="main">
+          <div class="header">
+            <p class="cell-title">header</p>
+            <button class="delete-cell">x</button>
+          </div>
+          <div class="content"></div>
         </div>
       </div>
       </div>

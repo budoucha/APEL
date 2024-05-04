@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     clone.querySelector("div.cell").id = `cell-${cellIndex}`;
 
     // cell header
-    const headerEl = clone.querySelector('.cell .header p');
+    const headerEl = clone.querySelector('.cell p.cell-title');
     clickToEdit(headerEl);
     headerEl.textContent = `${cellIndex}`;
 
@@ -74,25 +74,52 @@ document.addEventListener('DOMContentLoaded', () => {
       remapCellElIndex();
     });
 
-    // move cell before button
-    const moveBeforeBtnEl = clone.querySelector('button.move-cell.before');
-    moveBeforeBtnEl.addEventListener('click', () => {
-      const cellEl = moveBeforeBtnEl.closest('div.cell');
-      const previousCellEl = cellEl.previousElementSibling;
-      if (previousCellEl) {
-        cellEl.parentNode.insertBefore(cellEl, previousCellEl);
-        remapCellElIndex();
-      }
-    });
-    // move cell after button
-    const moveAfterBtnEl = clone.querySelector('button.move-cell.after');
-    moveAfterBtnEl.addEventListener('click', () => {
-      const cellEl = moveAfterBtnEl.closest('div.cell');
-      const nextCellEl = cellEl.nextElementSibling;
-      if (nextCellEl) {
-        cellEl.parentNode.insertBefore(cellEl, nextCellEl.nextElementSibling);
-        remapCellElIndex();
-      }
+    // grab
+    const grabEl = clone.querySelector('.grab-cell');
+    const grabMarker = document.querySelector('#grab-marker');
+    grabEl.addEventListener('dragstart', (e) => {
+      g.draggedEl = grabEl.closest('div.cell');
+      g.draggedEl.classList.add('dragging');
+      grabMarker.classList.remove('hidden');
+      g.draggedEl.parentNode.insertBefore(grabMarker, g.draggedEl.nextSibling);
+
+      g.draggedEl.addEventListener('dragend', (e) => {
+        g.draggedEl.classList.remove('dragging');
+        grabMarker.classList.add("hidden");
+      });
+
+      document.addEventListener('drop', (e) => {
+        e.preventDefault();
+        g.draggedEl.parentNode.insertBefore(g.draggedEl, grabMarker);
+      });
+
+      document.querySelector("section#main").addEventListener('dragover', (e) => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+
+        const cells = document.querySelectorAll('.cell:not(#add-cell-button)');
+        let closestCell = null;
+        let minDistance = Infinity;
+        cells.forEach(cell => {
+          const box = cell.getBoundingClientRect();
+          const offsetX = e.clientX - box.left;
+          const dx = offsetX - box.width / 2;
+          const offsetY = e.clientY - box.top;
+          const dy = offsetY - box.height / 2;
+          const distance = Math.sqrt(dx ** 2 + dy ** 2);
+          if (distance < minDistance) {
+            closestCell = cell;
+            minDistance = distance;
+          }
+        });
+
+        if (closestCell) {
+          const offset = e.clientX - closestCell.getBoundingClientRect().left;
+          const after = offset > closestCell.clientWidth / 2;
+          const marker = document.querySelector('.grab-marker');
+          after ? closestCell.after(marker) : closestCell.before(marker);
+        }
+      });
     });
 
     // apply cellInfo
