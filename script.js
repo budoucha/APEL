@@ -252,6 +252,8 @@ document.addEventListener('DOMContentLoaded', () => {
           cells.forEach(cell => {
             cell.remove();
           });
+          const addBtnEl = document.querySelector('#add-cell-button button.add-cell');
+          addBtnEl.click();
           document.querySelector('.page-title h1').textContent = "New Tempelit";
         }
       },
