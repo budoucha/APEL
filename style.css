@@ -44,6 +44,10 @@ section#menu {
   align-items: center;
   border-radius: 0.4em;
 
+  label {
+    font-size: small;
+  }
+
   .buttons {
     display: flex;
     gap: 1em;
