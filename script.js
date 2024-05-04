@@ -122,6 +122,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
+
+    // random color
+    contentEl.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 95%)`;
+
     // apply cellInfo
     headerEl.textContent = cellInfo.header || headerEl.textContent;
     contentEl.textContent = cellInfo.content || contentEl.textContent;
