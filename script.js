@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  clickToEdit(document.querySelector('h1.page-title'));
+  clickToEdit(document.querySelector('.page-title h1'));
 
   const remapCellElIndex = () => {
     const cells = document.querySelectorAll('div.cell.card-cell');
@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const makeSlot = () => {
     const cells = document.querySelectorAll('section#main div.cell.card-cell:not(.meta-cell)');
     const data = {
-      pageTitle: document.querySelector('h1.page-title').textContent,
+      pageTitle: document.querySelector('.page-title h1').textContent,
       cells: [],
     };
     cells.forEach(cell => {
@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
     cells.forEach(cell => {
       cell.remove();
     });
-    document.querySelector('h1.page-title').textContent = dataSlot.pageTitle;
+    document.querySelector('.page-title h1').textContent = dataSlot.pageTitle;
     dataSlot.cells.forEach(cellInfo => {
       createCell(cellInfo);
     });

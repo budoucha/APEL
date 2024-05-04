@@ -5,19 +5,35 @@ body {
   margin: 4px;
 
   .page-title {
-    margin-left: 0.2em;
-    width: 15em;
+    margin: 0.4lh 0.2em;
+    max-width: 40vw;
     height: 1.2lh;
-    font-size: 2em;
     color: #555;
-  }
 
-  h1.page-title {
-    cursor: pointer;
-  }
+    h1 {
+      margin: 0.2em;
+      width: 15em;
+      height: 1.2lh;
+      font-size: 2em;
+      color: #555;
+      cursor: pointer;
+    }
 
-  input.page-title {
-    align-self: center;
+    input {
+      margin: 0.2em;
+      width: 15em;
+      height: 1.2lh;
+      font-size: 2em;
+    }
+
+
+    h1::after {
+      content: "click to edit";
+      margin-left: 0.5em;
+      font-size: 0.5em;
+      font-weight: normal;
+      color: #888;
+    }
   }
 }
 
