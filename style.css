@@ -414,6 +414,10 @@ section#main.hover-to-show div.cell:not(:hover) .content {
           font-size: 0.75em;
         }
       }
+      #add-cell-button {
+        grid-template-columns: 1fr;
+        place-items: center;
+      }
     }
   }
 }
