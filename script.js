@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
     grabEl.addEventListener('dragstart', (e) => {
       const magicField = document.querySelector('#magic-field');
       magicField.style.display = 'block';
-      
+
       g.draggedEl = grabEl.closest('div.cell');
       g.draggedEl.classList.add('dragging');
       grabMarker.classList.remove('hidden');
