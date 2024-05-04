@@ -56,7 +56,7 @@ section#menu {
   top: 0.5lh;
   z-index: 1000;
   display: flex;
-  gap: 2em;
+  gap: 1.6em;
   align-items: center;
   border-radius: 0.4em;
 
@@ -319,4 +319,101 @@ div.cell:hover {
 
 section#main.hover-to-show div.cell:not(:hover) .content {
   opacity: 0;
+}
+
+@media only screen and (min-resolution: 192dpi) {
+
+  html,
+  body {
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
+    font-size: 2.4em;
+    align-content: center;
+
+    .page-title {
+      width: 100%;
+      max-width: unset;
+      display: flex;
+      align-items: center;
+      text-align: center;
+
+      h1 {
+        width: 100%;
+        font-size: 1.4em;
+      }
+
+      h1::after {
+        display: block;
+        text-align: center;
+      }
+
+      input {
+        text-align: center;
+        width: 100%;
+        font-size: 1em;
+      }
+    }
+
+    section#menu {
+      width: 100%;
+      height: min-content;
+      position: unset;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      border-radius: 0;
+      font-size: 1em;
+      gap: 0.4lh;
+
+      label,
+      input {
+        scale: 2;
+        font-size: 1em;
+      }
+
+      button {
+        font: 0.5em sans-serif;
+      }
+    }
+
+    section#main {
+      align-self: center;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+
+      .cell {
+        height: 7.2lh;
+        width: 8.8em;
+        font-size: 1em;
+        grid-template-columns: 0 1fr;
+        clip-path: none;
+
+        .grab-cell {
+          display: none;
+        }
+
+
+        input,
+        textarea {
+          font-size: 1em;
+        }
+
+        button {
+          font-size: 0.75em;
+        }
+      }
+    }
+  }
 }
