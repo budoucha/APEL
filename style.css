@@ -256,9 +256,9 @@ div.card-cell {
 }
 
 .cell.dragging .grab-cell {
-  background: 
-  /* #faf; */
-  linear-gradient(135deg, #0000 8%, #faf 8%);
+  background:
+    /* #faf; */
+    linear-gradient(135deg, #0000 8%, #faf 8%);
   border: none;
 }
 
