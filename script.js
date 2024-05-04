@@ -78,6 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const grabEl = clone.querySelector('.grab-cell');
     const grabMarker = document.querySelector('#grab-marker');
     grabEl.addEventListener('dragstart', (e) => {
+      const magicField = document.querySelector('#magic-field');
+      magicField.style.display = 'block';      
       g.draggedEl = grabEl.closest('div.cell');
       g.draggedEl.classList.add('dragging');
       grabMarker.classList.remove('hidden');
@@ -86,6 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
       g.draggedEl.addEventListener('dragend', (e) => {
         g.draggedEl.classList.remove('dragging');
         grabMarker.classList.add("hidden");
+        magicField.style.display = 'none';
       });
 
       document.addEventListener('drop', (e) => {
@@ -93,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
         g.draggedEl.parentNode.insertBefore(g.draggedEl, grabMarker);
       });
 
-      document.querySelector("section#main").addEventListener('dragover', (e) => {
+      magicField.addEventListener('dragover', (e) => {
         e.preventDefault();
         e.dataTransfer.dropEffect = 'move';
 

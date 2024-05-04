@@ -238,11 +238,12 @@ div.card-cell {
 .cell.dragging .grab-cell {
   background: #faf;
 }
+
 .cell.dragging {
   position: relative;
-  z-index: 9999;
-
+  z-index: 999;
 }
+
 .meta-cell.grab-marker {
   width: 0.9em;
   border-radius: 0;
@@ -255,6 +256,18 @@ div.card-cell {
 #grab-marker.hidden {
   display: none;
 }
+
+#magic-field {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: #0000;
+  display: none;
+}
+
 
 .meta-cell.button-container {
   opacity: 0.6;
