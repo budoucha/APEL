@@ -395,7 +395,11 @@ section#main.hover-to-show div.cell:not(:hover) .content {
         scale: 2;
         font-size: 1em;
       }
-
+      .half-buttons {
+        display: flex;
+        flex-direction: row;
+        gap: 0.4em;
+      }
       button {
         font: 0.5em sans-serif;
       }
