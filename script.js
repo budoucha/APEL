@@ -126,6 +126,30 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
+    // image drop
+    contentEl.addEventListener('dragover', (e) => {
+      if (e.dataTransfer.types.includes('Files')) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    });
+    contentEl.addEventListener('drop', (e) => {
+      e.preventDefault();
+      const files = e.dataTransfer.files;
+      if (files.length === 0) return;
+      const file = files[0];
+      if (file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const img = document.createElement('img');
+          img.classList.add('content', 'content-image');
+          img.src = e.target.result;
+          contentEl.replaceWith(img);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
 
     // random color
     contentEl.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 95%)`;
@@ -133,6 +157,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // apply cellInfo
     headerEl.textContent = cellInfo.header || headerEl.textContent;
     contentEl.textContent = cellInfo.content || contentEl.textContent;
+    if (cellInfo.isImage) {
+      const img = document.createElement('img');
+      img.classList.add('content', 'content-image');
+      img.src = cellInfo.content;
+      contentEl.replaceWith(img);
+    }
     contentEl.style.backgroundColor = cellInfo.color || contentEl.style.backgroundColor;
 
     // add cell
@@ -189,7 +219,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const headerEl = cell.querySelector('p.cell-title');
       cellInfo.header = headerEl?.textContent;
       const contentEl = cell.querySelector('.content');
-      cellInfo.content = contentEl?.innerHTML.replace(/<br\s*\/?>/gi, '\n');
+      if (contentEl.classList.contains('content-image')) {
+        cellInfo.content = contentEl?.src;
+        cellInfo.isImage = true;
+      } else {
+        cellInfo.content = contentEl?.innerHTML.replace(/<br\s*\/?>/gi, '\n');
+      }
       cellInfo.color = contentEl?.style.backgroundColor;
       data.cells.push(cellInfo);
     });
