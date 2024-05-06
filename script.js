@@ -126,9 +126,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // image drop
+    // drop to content
     contentEl.addEventListener('dragover', (e) => {
-      if (e.dataTransfer.types.includes('Files')) {
+      if (e.dataTransfer.types.includes('Files')
+        || e.dataTransfer.types.includes('text/plain')) {
         e.preventDefault();
         e.stopPropagation();
       }
@@ -136,7 +137,13 @@ document.addEventListener('DOMContentLoaded', () => {
     contentEl.addEventListener('drop', (e) => {
       e.preventDefault();
       const files = e.dataTransfer.files;
-      if (files.length === 0) return;
+      if (files.length === 0) {
+        if (e.dataTransfer.types.includes('text/plain')) {
+          const text = e.dataTransfer.getData('text/plain');
+          contentEl.textContent = text;
+          return;
+        }
+      };
       const file = files[0];
       if (file.type.startsWith('image/')) {
         const reader = new FileReader();
