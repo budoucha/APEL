@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // apply cellInfo
     headerEl.textContent = cellInfo.header || headerEl.textContent;
     contentEl.textContent = cellInfo.content || contentEl.textContent;
-    if (cellInfo.isImage) {
+    if (cellInfo.isImage || cellInfo.type === 'image') { //頃合いを見てisImageの方は削除
       const img = document.createElement('img');
       img.classList.add('content', 'content-image');
       img.src = cellInfo.content;
@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const contentEl = cell.querySelector('.content');
       if (contentEl.classList.contains('content-image')) {
         cellInfo.content = contentEl?.src;
-        cellInfo.isImage = true;
+        cellInfo.type = 'image';
       } else {
         cellInfo.content = contentEl?.innerHTML.replace(/<br\s*\/?>/gi, '\n');
       }
