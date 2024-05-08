@@ -271,8 +271,9 @@ document.addEventListener('DOMContentLoaded', () => {
     cells.forEach(cell => {
       cell.remove();
     });
-    document.querySelector('.page-title h1').textContent = dataSlot.pageTitle;
-    dataSlot.cells.forEach(cellInfo => {
+    const pageTitleEl = document.querySelector('.page-title h1');
+    pageTitleEl.textContent = dataSlot?.pageTitle ? dataSlot.pageTitle : "New Tempelit";
+    dataSlot?.cells.forEach(cellInfo => {
       createCell(cellInfo);
     });
   };
@@ -303,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   // auto load
   const savedSlot = JSON.parse(localStorage.getItem('dataSlot'));
-  loadData(savedSlot);
+  savedSlot ? loadData(savedSlot) : null;
 
   // clear button
   const clearBtnEl = document.querySelector('button.clear');
