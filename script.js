@@ -78,8 +78,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const grabEl = clone.querySelector('.grab-cell');
     const grabMarker = document.querySelector('#grab-marker');
     grabEl.addEventListener('dragstart', (e) => {
-      const magicField = document.querySelector('#magic-field');
-      magicField.style.display = 'block';
+      const magicField = document.createElement('div')
+      magicField.id=('magic-field');
+      document.body.appendChild(magicField);
 
       g.draggedEl = grabEl.closest('div.cell');
       g.draggedEl.classList.add('dragging');
@@ -90,6 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         g.draggedEl.classList.remove('dragging');
         grabMarker.classList.add("hidden");
         magicField.style.display = 'none';
+        magicField.remove();
       });
 
       document.addEventListener('drop', (e) => {
