@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const grabMarker = document.querySelector('#grab-marker');
     grabEl.addEventListener('dragstart', (e) => {
       const magicField = document.createElement('div')
-      magicField.id=('magic-field');
+      magicField.id = ('magic-field');
       document.body.appendChild(magicField);
 
       g.draggedEl = grabEl.closest('div.cell');
