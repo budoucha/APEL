@@ -3,6 +3,7 @@ import showConfirm from './showConfirm/showConfirm.js';
 document.addEventListener('DOMContentLoaded', () => {
   const g = {
     // global variables
+    dataSlots: [],
     dataSlot: {
       pageTitle: "",
       cells: [],
@@ -283,8 +284,16 @@ document.addEventListener('DOMContentLoaded', () => {
     showConfirm('overwrite current cells?', [
       {
         name: "ok", function: () => {
-          const loadedSlot = JSON.parse(localStorage.getItem('dataSlot'));
-          loadData(loadedSlot);
+          const slots = JSON.parse(localStorage.getItem('dataSlots'));
+          if (slots?.[0]?.cells) {
+            console.log('loaded from slots');
+            const loadedSlot = slots[0];
+            loadData(loadedSlot);
+          }
+          else {
+            const loadedSlot = JSON.parse(localStorage.getItem('dataSlot'));
+            loadData(loadedSlot);
+          } 
         }
       },
       {
