@@ -293,7 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
           else {
             const loadedSlot = JSON.parse(localStorage.getItem('dataSlot'));
             loadData(loadedSlot);
-          } 
+          }
         }
       },
       {
@@ -314,7 +314,9 @@ document.addEventListener('DOMContentLoaded', () => {
     ]);
   });
   // auto load
-  const savedSlot = JSON.parse(localStorage.getItem('dataSlot'));
+  const slots = JSON.parse(localStorage.getItem('dataSlots'));
+  const slot = JSON.parse(localStorage.getItem('dataSlot'));
+  const savedSlot = slots?.[0]?.cells ? slots[0] : slot;
   savedSlot ? loadData(savedSlot) : null;
 
   // clear button
