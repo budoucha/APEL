@@ -247,6 +247,10 @@ document.addEventListener('DOMContentLoaded', () => {
         name: "ok", function: () => {
           g.dataSlot = makeSlot();
           localStorage.setItem('dataSlot', JSON.stringify(g.dataSlot));
+          // save to slots
+          const dataSlots = JSON.parse(localStorage.getItem('dataSlots')) ?? [];
+          dataSlots[0] = g.dataSlot; // 選択可能にするまでは先頭に1つだけ保存
+          localStorage.setItem('dataSlots', JSON.stringify(dataSlots));
         }
       },
       {
